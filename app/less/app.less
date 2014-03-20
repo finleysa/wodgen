@@ -1,3 +1,5 @@
+@top-bar: #B93232;
+
 body{
   background-image: url(/img/colorbackground.jpg);
   background-size: cover;
@@ -5,4 +7,17 @@ body{
 
 .white{
   color: white;
+}
+
+.red{
+  background-color: @top-bar;
+}
+
+//<======Template======>
+.top-bar{
+  background: @top-bar !important;
+}
+
+ul .left{
+  background: @top-bar !important;
 }

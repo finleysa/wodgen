@@ -1,6 +1,10 @@
 'use strict';
 
+var User = require('../models/user');
+
 exports.index = function(req, res){
-  res.render('home/index');
+  User.findById(req.session.userId, function(user){
+    res.render('home/index', {user:user});
+  });
 };
 

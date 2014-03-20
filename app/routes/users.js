@@ -26,9 +26,6 @@ exports.logout = function(req, res){
 
 exports.login = function(req, res){
   User.findByEmailAndPassword(req.body.email, req.body.password, function(user){
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
-    console.log(user);
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
     if(user){
       req.session.regenerate(function(){
         req.session.userId = user._id.toString();
@@ -38,19 +35,14 @@ exports.login = function(req, res){
       });
     }else{
       req.session.destroy(function(){
-        res.redirect('/broken');
+        res.redirect('/');
       });
     }
   });
 };
 
-/*
 exports.show = function(req, res){
   User.findById(req.session.userId, function(user){
-
-    Item.findByUserId(req.session.userId, function(items){
-      res.render('users/show', {user:user, items:items, gravatar: url});
-    });
+    res.render('users/show', {user:user});
   });
 };
-*/

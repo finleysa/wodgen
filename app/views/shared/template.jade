@@ -10,64 +10,91 @@ html(class='no-js', lang='en')
     link(rel='stylesheet', href='/less/app.css')
     script(src='/js/vendor/modernizr.js')
   body
-    nav.top-bar
-      ul.title-area
-        li.name
-          h1: a(href="/") The Title
-        li.toggle-topbar.menu-icon
-          a(href="#") Menu
-
-      section.top-bar-section
-        ul.left
-        ul.right
-          if user
-            li: h5.white Welcome, #{user.name}!
-            li.divider
-          li: a(href="/") Home
-          li.divider
-          li.has-form.has-dropdown.not-click
-            a(href='#') Menu
-            ul.dropdown
-              li: a(href="/items") Items
-              li: a(href="/users/show") Profile
-              if !user
-                li: a(href="#" data-reveal-id="login") Login
-                li: a(href="#" data-reveal-id="register") Register
-              if user
-                li.has-form
-                  form(action='/logout', method='post')
-                    button#logout.tiny.radius.alert Logout
-          li: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
     .row
       .small-12.columns
-        div#register.createItemForm.reveal-modal.tiny(data-reveal)
-          .row
-            .small-12.columns
-              form(action='/register', method='post', enctype='multipart/form-data')
-                label.left Name
-                input(name='name', type='text', autofocus=true, required)
-                label.left Email
-                input(name='email', type='email', required)
-                label.left Password
-                input(name='password', type='password', required)
-                button.radius.close-reveal-model Create
-          a.close-reveal-modal &#215; 
-    .row
-      .small-12.columns
-        div#login.createItemForm.reveal-modal.tiny(data-reveal)
-          .row
-            .small-12.columns
-              form(action='/login', method='post', enctype='multipart/form-data')
-                label.left Email
-                input(name='email', type='email', required)
-                label.left Password
-                input(name='password', type='password', required)
-                button.radius.close-reveal-model Create
-          a.close-reveal-modal &#215; 
+        nav.top-bar
+          ul.title-area
+            li.name
+              h1: a(href="/") WodGen
+            li.toggle-topbar.menu-icon
+              a(href="#") Menu
 
-        block content
-    
+          section.top-bar-section
+            ul.left
+            ul.right
+              li: a(href="/") Home
+              li.divider
+              li.has-form.has-dropdown.not-click
+                a(href='#') Menu
+                ul.dropdown
+                  li: a(href="/wods") WODS
+                  if !user
+                    li: a(href="#" data-reveal-id="login") Login
+                    li: a(href="#" data-reveal-id="register") Register
+                  if user
+                    li: a(href="/users/show") Profile
+                    li: a(href="#" data-reveal-id="createWod") Create Wod
+                    li.has-form
+                      form(action='/logout', method='post')
+                        button#logout.tiny.radius Logout
+
+        .row
+          .small-12.columns
+            div#register.createItemForm.reveal-modal.tiny(data-reveal)
+              .row
+                .small-12.columns
+                  form(action='/register', method='post', enctype='multipart/form-data')
+                    label.left Name
+                    input(name='name', type='text', autofocus=true, required)
+                    label.left Email
+                    input(name='email', type='email', required)
+                    label.left Password
+                    input(name='password', type='password', required)
+                    button.radius.close-reveal-model Register
+              a.close-reveal-modal &#215; 
+        .row
+          .small-12.columns
+            div#login.createItemForm.reveal-modal.tiny(data-reveal)
+              .row
+                .small-12.columns
+                  form(action='/login', method='post', enctype='multipart/form-data')
+                    label.left Email
+                    input(name='email', type='email', required)
+                    label.left Password
+                    input(name='password', type='password', required)
+                    button.radius.close-reveal-model Log in
+              a.close-reveal-modal &#215; 
+        if user
+          .row
+            .small-12.columns
+              div#createWod.createItemForm.reveal-modal.tiny(data-reveal)
+                .row
+                  .small-12.columns
+                    form(action='/wods/add', method='post', enctype='multipart/form-data')
+                      label.left Name of Wod
+                      input(name='name', type='email', required)
+                      label.left Summary
+                      .row
+                        .small-12.columns
+                          input(name='summary', cols='300', rows='5', placeholder='Enter the workout details here', required)
+                          label.left Categories (one required)
+                          - for (var i=0; i<3; i++)
+                            select(name='cat' + i) 
+                              option AMRAP
+                              option Bodyweight
+                              option Chippers
+                              option Couplets
+                              option EMOM
+                              option Heros
+                              option Hybrid
+                              option Singlet
+                              option Strongman
+                              option Rowing
+                              option Weightlifting
+                          button.radius.close-reveal-model Log in
+                a.close-reveal-modal &#215; 
+    block content
+        
     script(src='/js/vendor/jquery.js')
     script(src='/js/vendor/foundation.min.js')
     script(src='/js/vendor/lodash.js')
