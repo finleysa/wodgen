@@ -9,4 +9,9 @@ block content
             h1= user.name
             h2= user.email
             h3#progressPics: a(href='/user/progress') Progress Pics
-            #wodDB
+            if user.wods
+              - for (var i=0; i<user.wods.length; i++)
+                h5= user.wods[i].wod.name
+                h5= user.wods[i].date
+
+

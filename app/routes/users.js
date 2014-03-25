@@ -11,7 +11,7 @@ exports.register = function(req, res){
     user.insert(function(){
       if(user._id){
         req.session.userId = user._id;
-        res.redirect('/users/show');
+        res.redirect('');
       }else{
         res.redirect('/failedregister');
       }
@@ -31,7 +31,7 @@ exports.login = function(req, res){
       req.session.regenerate(function(){
         req.session.userId = user._id.toString();
         req.session.save(function(){
-          res.redirect('/');
+          res.redirect('/users/show');
         });
       });
     }else{
@@ -44,15 +44,23 @@ exports.login = function(req, res){
 
 exports.show = function(req, res){
   User.findById(req.session.userId, function(user){
-    res.render('users/show', {user:user});
+    if(user) {
+      res.render('users/show', {user:user});
+    }else{
+      res.redirect('/failedaddwod');
+    }
   });
 };
 
 exports.addWod = function(req, res){
   Wod.findByName(req.params.wodName, function(wod){
+    console.log('1');
     User.findById(req.session.userId, function(user){
-      user.wods.push({date:new Date(), wod:wod});
-      res.render('users/show', {user:user});
+      console.log('2');
+      user.updateWods(wod, function(){
+        console.log('3');
+        res.redirect('users/show');
+      });
     });
   });
 };

@@ -1,10 +1,11 @@
+
 'use strict';
 
 module.exports = User;
 var bcrypt = require('bcrypt');
 var users = global.nss.db.collection('users');
 var Mongo = require('mongodb');
-//var _ = require('lodash');
+var _ = require('lodash');
 //var fs = require('fs');
 //var path = require('path');
 
@@ -36,6 +37,17 @@ User.prototype.insert = function(fn){
   });
 };
 
+User.prototype.updateWods = function(wod,fn){
+  var date = new Date();
+  var x = {date:date, wod:wod};
+  this.wods.push(x);
+  console.log(this.wods);
+  users.update({_id:this._id}, this, function(err, count){
+    console.log('update');
+    fn(count);
+  });
+};
+
 exports.logout = function(req, res){
   req.session.destroy(function(){
     res.redirect('/');
@@ -61,7 +73,7 @@ User.findById = function(id, fn){
   var _id = Mongo.ObjectID(id);
 
   users.findOne({_id:_id}, function(err, record){
-    fn(record);
+    fn(_.extend(record, User.prototype));
   });
 };
 

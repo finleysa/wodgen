@@ -20,12 +20,13 @@ function load(app, fn){
   app.get('/', d, home.index);
   app.get('/failedlogin', d, home.failedLogin);
   app.get('/failedregister', d, home.failedRegister);
+  app.get('/failedaddwod', d, home.failedAddWod);
 
   app.post('/register', d, users.register);
   app.post('/logout', d, users.logout);
   app.post('/login', d, users.login);
   app.get('/users/show', d, users.show);
-  app.get('/users/addwod/:wodName', d, users.show);
+  app.get('/users/addwod/:wodName', d, users.addWod);
   
   app.get('/wods', d, wods.index);
   app.get('/wods/all', d, wods.retrieveAll);

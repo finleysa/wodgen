@@ -15,3 +15,7 @@ exports.failedLogin = function(req, res){
 exports.failedRegister = function(req, res){
   res.render('home/index', {fail: 'E-mail already registered.'});
 };
+
+exports.failedAddWod = function(req, res){
+  res.render('home/index', {fail: 'Sign in to use this feature.'});
+};
