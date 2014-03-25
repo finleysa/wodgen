@@ -1,6 +1,23 @@
 extends ../shared/template
-
-
-
-
 block content
+    .row
+      .small-12.columns
+        #container
+          .row
+            .small-4.columns
+                #menu
+                  label.fancy Filter
+                  input#filterBy
+            .small-8.columns
+              .button-bar
+                .button-group
+                  li: button.tiny.movement Deadlift
+                  li: button.tiny.movement Bench Press
+              .row
+                .small-12.columns
+                  #wods
+
+
+
+  block scripts
+  script(src='/js/source/wodindex.js')

@@ -8,3 +8,10 @@ exports.index = function(req, res){
   });
 };
 
+exports.failedLogin = function(req, res){
+  res.render('home/index', {fail: 'Login Incorrect. Please try again.'});
+};
+
+exports.failedRegister = function(req, res){
+  res.render('home/index', {fail: 'E-mail already registered.'});
+};

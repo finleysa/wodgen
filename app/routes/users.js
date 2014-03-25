@@ -1,6 +1,7 @@
 'use strict';
 
 var User = require('../models/user');
+var Wod = require('../models/wod');
 //var gravatar = require('gravatar');
 //var request = require('request');
 
@@ -10,9 +11,9 @@ exports.register = function(req, res){
     user.insert(function(){
       if(user._id){
         req.session.userId = user._id;
-        res.render('home/index', {user:user});
+        res.redirect('/users/show');
       }else{
-        res.redirect('/');
+        res.redirect('/failedregister');
       }
     });
   });
@@ -30,12 +31,12 @@ exports.login = function(req, res){
       req.session.regenerate(function(){
         req.session.userId = user._id.toString();
         req.session.save(function(){
-          res.render('home/index', {user:user});
+          res.redirect('/');
         });
       });
     }else{
       req.session.destroy(function(){
-        res.redirect('/');
+        res.redirect('/failedlogin');
       });
     }
   });
@@ -44,5 +45,14 @@ exports.login = function(req, res){
 exports.show = function(req, res){
   User.findById(req.session.userId, function(user){
     res.render('users/show', {user:user});
+  });
+};
+
+exports.addWod = function(req, res){
+  Wod.findByName(req.params.wodName, function(wod){
+    User.findById(req.session.userId, function(user){
+      user.wods.push({date:new Date(), wod:wod});
+      res.render('users/show', {user:user});
+    });
   });
 };

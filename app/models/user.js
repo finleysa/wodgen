@@ -12,6 +12,7 @@ function User(user){
   this.name = user.name;
   this.email = user.email || null;
   this.password = user.password || '';
+  this.wods = [];
 }
 
 User.prototype.hashPassword = function(fn){

@@ -1,6 +1,51 @@
 extends ../shared/template
-
-
-
-
 block content
+  .row
+    .small-12.columns
+      #container
+          if fail
+            .space.data-alert.alert-box.warning.radius= fail
+          .row
+            .small-12.small-centerd.columns#tabWrap
+              dl(class="tabs vertical", data-tab)
+                dd(class="active"): a(href="#panel1a") SIGNUP
+                dd: a(href="#panel2a") LOGIN
+              div(class="tabs-content vertical")
+                div(class="content active", id="panel1a")
+                  form(action='/register', method='post', enctype='multipart/form-data')
+                    fieldset
+                      legend Register
+                      .row
+                        .small-12.columns
+                          label Name
+                          input(name='name', type='text', autofocus=true, required)
+                        .small-12.columns
+                          label Email
+                          input(name='email', type='email', required)
+                      .row
+                        .small-12.columns
+                          label Password
+                          input(name='password', type='password', required)
+                      .row
+                        .small-12.columns
+                          label Add Photo
+                          input(name='userPhoto', type='file', required)
+                      .row
+                        .small-12.columns
+                          button.small.radius Register
+                div(class="content", id="panel2a")
+                  form#loginTabForm(action='/login', method='post')
+                    fieldset
+                      legend Login
+                      .row
+                        .small-12.columns
+                          label Email
+                          input(name='email', type='text', required)
+                      .row
+                        .small-12.columns
+                          label Password
+                          input(name='password', type='password', required)
+                      .row
+                        .small-12.columns
+                        button.small.radius.alert Login
+

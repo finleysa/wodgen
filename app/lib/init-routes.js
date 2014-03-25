@@ -18,12 +18,19 @@ function load(app, fn){
   var wods = require('../routes/wods');
 
   app.get('/', d, home.index);
+  app.get('/failedlogin', d, home.failedLogin);
+  app.get('/failedregister', d, home.failedRegister);
+
   app.post('/register', d, users.register);
   app.post('/logout', d, users.logout);
   app.post('/login', d, users.login);
   app.get('/users/show', d, users.show);
-  app.post('/wods/add', d, wods.create);
+  app.get('/users/addwod/:wodName', d, users.show);
+  
   app.get('/wods', d, wods.index);
+  app.get('/wods/all', d, wods.retrieveAll);
+  app.post('/wods/add', d, wods.create);
+
   console.log('Routes Loaded');
   fn();
 }

@@ -1,23 +1,104 @@
 @top-bar: #B93232;
+@background: rgb(74, 96, 104);
+@import url(http://fonts.googleapis.com/css?family=Chau+Philomene+One);
 
-body{
-  background-image: url(/img/colorbackground.jpg);
+h1, h2, h3, h4, h5, a {
+  font-family: 'Chau Philomene One';
+}
+
+body {
+  background-color: lightgrey;
+  background-image: url(/img/background.jpg);
   background-size: cover;
 }
 
-.white{
+.space{
+  margin: 10px;
+}
+
+.fancy {
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+}
+
+.background {
+  background-color: @background;
+}
+
+.white {
   color: white;
 }
 
-.red{
+.red {
   background-color: @top-bar;
 }
 
 //<======Template======>
-.top-bar{
+
+.createWodForm {
+  background-color: #ecf0f1;
+  padding: 20px;
+  border: 7px solid @top-bar;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.top-bar {
   background: @top-bar !important;
 }
 
-ul .left{
+ul .left {
   background: @top-bar !important;
 }
+
+#infopage {
+  height: 200px;
+  width: 100%;
+  background-color: white;
+}
+
+//<======Home Page======>
+#tabWrap {
+  position: relative;
+  background-color: #fff;
+  opacity: .9;
+  border-radius: 10px;
+  border: 12px solid #b93232;
+  padding: 10px;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+//<======Home Page======>
+#progressPics {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+//<======Wods Index======>
+.wod {
+  color: purple;
+  background-color: orange;
+  margin: 10px 15px;
+  padding: 3px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+#menu {
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid black;
+  background-color: @top-bar;
+}
+
+#filterBy {
+  margin: 0 0 0 35px;
+}
+
+
