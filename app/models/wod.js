@@ -18,7 +18,7 @@ function Wod(wod){
 //<------New Wod------>//
 Wod.prototype.insert = function(fn){
   wods.insert(this, function(err){
-    fn(err);
+    fn();
   });
 };
 

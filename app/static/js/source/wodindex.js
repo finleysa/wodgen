@@ -45,19 +45,23 @@
   
   // On category button click
   function category(){
-    console.log('change');
     $('#wods').empty();
     var filters = $(this).text().replace(/\s/g,'').toLowerCase().split(',');
-    console.log(filters);
+    var count = 0;
+    var page = 0;
     for (var i = 0; i < wods.length; i++) {
       for (var j = 0; j < filters.length; j++) {
         for (var k = 0; k < wods[i].movement.length; k++) {
           if (wods[i].movement[k] === filters[j]) {
-            console.log(filters[j]);
-            console.log(filters);
             showWod(wods[i]);
+            count++;
           }else{
             console.log('non-equal elements');
+          }
+          if(count % 5 === 0){
+            console.log(page);
+            page++;
+            break;
           }
         }
       }
@@ -67,24 +71,22 @@
   // show wod information
   function showWod(wod){
     var $container = $('<div>');
-    var $name = $('<div>');
+    var $name = $('<a>');
     var $instructions = $('<div>');
     var $summary = $('<div>');
-    var $button = $('<button>');
     var $a = $('<a>');
     
     $name.text(wod.name);
     $instructions.text(wod.instructions);
     $summary.text(wod.summary);
-    $button.text('Do This Wod');
     $a.text('Do This Wod');
     
-    $button.addClass('tiny radius doIt');
-    $container.addClass('wod');
+    $container.addClass('createWodForm space');
 
+    $name.attr('href','http://www.youtube.com/results?search_query='+wod.name+'%20crossfit%20demo');
     $a.attr('href','/users/addwod/' + wod.name);
 
-    $container.append($name, $instructions, $summary, $button, $a);
+    $container.append($name, $instructions, $summary, $a);
     $('#wods').append($container);
   }
 

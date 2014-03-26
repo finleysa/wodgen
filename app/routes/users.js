@@ -57,10 +57,14 @@ exports.addWod = function(req, res){
     console.log('1');
     User.findById(req.session.userId, function(user){
       console.log('2');
-      user.updateWods(wod, function(){
-        console.log('3');
-        res.redirect('users/show');
-      });
+      if (user){
+        user.updateWods(wod, function(){
+          console.log('3');
+          res.redirect('users/show');
+        });
+      }else{
+        res.redirect('/failedaddwod');
+      }
     });
   });
 };

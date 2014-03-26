@@ -23,11 +23,10 @@ describe('User', function(){
     global.nss.db.dropDatabase(function(err, result){
       wod  = new Wod({name:'Angie',
                       summary:'1234',
-                      categorie: 'AMRAP',
+                      category: 'AMRAP',
                       movement: ['thruster', 'jumprope'],
                       instructions: 'run in circles'
       });
-      wod.insert();
       done();
     });
   });
@@ -35,8 +34,11 @@ describe('User', function(){
   describe('new', function(){
     it('should create a new User object', function(done){
       expect(wod).to.be.instanceof(Wod);
+      console.log('>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<');
       expect(wod.name).to.equal('Angie');
-      expect(wod.categorie).to.equal('AMRAP');
+      console.log('>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<');
+      expect(wod.category).to.equal('AMRAP');
+      console.log('>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<');
       done();
     });
   });

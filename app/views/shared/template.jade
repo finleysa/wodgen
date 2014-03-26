@@ -10,87 +10,89 @@ html(class='no-js', lang='en')
     link(rel='stylesheet', href='/less/app.css')
     script(src='/js/vendor/modernizr.js')
   body
-    nav.top-bar
-      ul.title-area
-        li.name
-          h1: a(href="/") WodGen
-        li.toggle-topbar.menu-icon
-          a(href="#") Menu
-
-      section.top-bar-section
-        ul.left
-        ul.right
-          li: a(href="/") Home
-          li.divider
-          li.has-form.has-dropdown.not-click
-            a(href='#') Menu
-            ul.dropdown
-              li: a(href="/wods") WODS
-              if !user
-                li: a(href="#" data-reveal-id="login") Login
-                li: a(href="#" data-reveal-id="register") Register
-              if user
-                li: a(href="/users/show") Profile
-                li: a(href="#" data-reveal-id="createWod") Create Wod
-                li.has-form
-                  form(action='/logout', method='post')
-                    button#logout.tiny.radius Logout
-
     .row.radius
       .small-12.columns
-        div#register.createWodForm.reveal-modal.tiny(data-reveal)
-          .row
-            .small-12.columns
-              form(action='/register', method='post', enctype='multipart/form-data')
-                label.left Name
-                input(name='name', type='text', autofocus=true, required)
-                label.left Email
-                input(name='email', type='email', required)
-                label.left Password
-                input(name='password', type='password', required)
-                button.radius.close-reveal-model Register
-          a.close-reveal-modal &#215; 
-    .row
-      .small-12.columns
-        div#login.createWodForm.reveal-modal.tiny(data-reveal)
-          .row
-            .small-12.columns
-              form(action='/login', method='post', enctype='multipart/form-data')
-                label.left Email
-                input(name='email', type='email', required)
-                label.left Password
-                input(name='password', type='password', required)
-                button.radius.close-reveal-model Log in
-          a.close-reveal-modal &#215; 
-    .row
-      .small-12.columns
-        div#createWod.createWodForm.reveal-modal.radius.tiny(data-reveal)
-          .row
-            .small-12.columns
-              form(action='/wods/add', method='post', enctype='multipart/form-data')
-                label.left Name of Wod
-                input(name='name', type='text', required)
-                label.left Workout Instructions
-                textarea(name='instructions', cols='300', rows='5', placeholder='Enter the workout details here', required)
-                label.left Workout Summary
-                .row
-                  .small-12.columns
-                    textarea(name='summary', cols='300', rows='5', placeholder='Enter the workout details here', required)
-                    label.left Categories (one required)
-                      select(name='category') 
-                        option AMRAP
-                        option For Time
-                .row
-                  .small-12.columns
-                    label Movements Involved
-                    input(name='movement', type='text', placeholder='Thruster, Jump Rope, Kettlebell', required)
+      nav.top-bar
+        ul.title-area
+          li.name
+            h1: a(href="/") WodGen
+          li.toggle-topbar.menu-icon
+            a(href="#") Menu
 
-                .row
-                  .small-12.columns
-                    button.radius.close-reveal-model Create
-          a.close-reveal-modal &#215; 
-    .row
-      .small-12.columns
+        section.top-bar-section
+          ul.left
+          ul.right
+            li: a(href="/") Home
+            li.divider
+            li.has-form.has-dropdown.not-click
+              a(href='#') Menu
+              ul.dropdown
+                li: a(href="/wods") WODS
+                if !user
+                  li: a(href="#" data-reveal-id="login") Login
+                  li: a(href="#" data-reveal-id="register") Register
+                if user
+                  li: a(href="/users/show") Profile
+                  li: a(href="#" data-reveal-id="createWod") Create Wod
+                  li.has-form
+                    form(action='/logout', method='post')
+                      button#logout.tiny.radius Logout
+
+      .row.radius
+        .small-12.columns
+          div#register.createWodForm.reveal-modal.tiny(data-reveal)
+            .row
+              .small-12.columns
+                form(action='/register', method='post', enctype='multipart/form-data')
+                  label.left Name
+                  input(name='name', type='text', autofocus=true, required)
+                  label.left Email
+                  input(name='email', type='email', required)
+                  label.left Password
+                  input(name='password', type='password', required)
+                  button.radius.close-reveal-model Register
+            a.close-reveal-modal &#215; 
+      .row
+        .small-12.columns
+          div#login.createWodForm.reveal-modal.tiny(data-reveal)
+            .row
+              .small-12.columns
+                form(action='/login', method='post', enctype='multipart/form-data')
+                  label.left Email
+                  input(name='email', type='email', required)
+                  label.left Password
+                  input(name='password', type='password', required)
+                  button.radius.close-reveal-model Log in
+            a.close-reveal-modal &#215; 
+      .row
+        .small-12.columns
+          div#createWod.createWodForm.reveal-modal.radius.tiny(data-reveal)
+            .row
+              .small-12.columns
+                form(action='/wods/add', method='post', enctype='multipart/form-data')
+                  label.left Name of Wod
+                  input(name='name', type='text', required)
+                  label.left Workout Instructions
+                  textarea(name='instructions', cols='300', rows='5', placeholder='Enter the workout details here', required)
+                  label.left Workout Summary
+                  .row
+                    .small-12.columns
+                      textarea(name='summary', cols='300', rows='5', placeholder='Enter the workout details here', required)
+                      label.left Categories (one required)
+                        select(name='category') 
+                          option AMRAP
+                          option For Time
+                  .row
+                    .small-12.columns
+                      label Movements Involved
+                      input(name='movement', type='text', placeholder='Thruster, Jump Rope, Kettlebell', required)
+
+                  .row
+                    .small-12.columns
+                      button.radius.close-reveal-model Create
+            a.close-reveal-modal &#215; 
+      .row
+        .small-12.columns
     block content
         
     script(src='/js/vendor/jquery.js')
