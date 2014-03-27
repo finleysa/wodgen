@@ -31,7 +31,6 @@ function load(app, fn){
   app.get('/wods', d, wods.index);
   app.get('/wods/all', d, wods.retrieveAll);
   app.post('/wods/add', d, wods.create);
-  app.get('/admin', d, wods.give);
 
   console.log('Routes Loaded');
   fn();
