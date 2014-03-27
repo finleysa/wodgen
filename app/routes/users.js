@@ -8,6 +8,7 @@ var Wod = require('../models/wod');
 exports.register = function(req, res){
   var user = new User(req.body);
   user.hashPassword(function(){
+    user.addCover(req.files.cover.path);
     user.insert(function(){
       if(user._id){
         req.session.userId = user._id;
@@ -68,3 +69,4 @@ exports.addWod = function(req, res){
     });
   });
 };
+

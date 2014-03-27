@@ -28,6 +28,10 @@ block content
                           input(name='password', type='password', required)
                       .row
                         .small-12.columns
+                          label Profile Photo
+                          input(name='cover', type='file', required)
+                      .row
+                        .small-12.columns
                           button.small.radius Register
                 div(class="content", id="panel2a")
                   form#loginTabForm(action='/login', method='post')
@@ -44,3 +48,22 @@ block content
                       .row
                         .small-12.columns
                         button.small.radius.alert Login
+
+  #bottom
+    .row
+      .small-6.columns
+        .space
+        h6 © 2014 Jay Knight Industries
+        h6 340 Plus Park Blvd, Nashville, TN
+        div &nbsp;
+        a(href='http://www.google.com') Find a Solution to your problem here
+        .space
+      .small-6.columns
+        .space
+        <a href="#">steve.a.finley@gmail.com</a>
+        a(href='/wods') Wod Database
+        div &nbsp;
+        a(href='/logout') Logout
+        div &nbsp;
+        .space
+

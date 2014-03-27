@@ -11,7 +11,7 @@ block content
             h3#progressPics: a(href='/user/progress') Progress Pics
             if user.wods
               - for (var i=0; i<user.wods.length; i++)
-                h5= user.wods[i].wod.name
+                h5= user.wodsCompleted[i].name
                 h5= user.wods[i].date
 
 

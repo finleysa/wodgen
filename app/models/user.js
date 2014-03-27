@@ -6,14 +6,15 @@ var bcrypt = require('bcrypt');
 var users = global.nss.db.collection('users');
 var Mongo = require('mongodb');
 var _ = require('lodash');
-//var fs = require('fs');
-//var path = require('path');
+var fs = require('fs');
+var path = require('path');
 
 function User(user){
   this.name = user.name;
   this.email = user.email || null;
   this.password = user.password || '';
   this.wods = [];
+  this.wodsCompleted = [];
 }
 
 User.prototype.hashPassword = function(fn){
@@ -38,9 +39,11 @@ User.prototype.insert = function(fn){
 };
 
 User.prototype.updateWods = function(wod,fn){
+  this.wodsCompleted.push(_.flatten(wod));
   var date = new Date();
   var x = {date:date, wod:wod};
   this.wods.push(x);
+  
   console.log(this.wods);
   users.update({_id:this._id}, this, function(err, count){
     console.log('update');
@@ -91,5 +94,18 @@ User.findByEmailAndPassword = function(email, password, fn){
       fn(null);
     }
   });
+};
+
+User.prototype.addCover = function(oldpath){
+  var dirname = this.email.replace(/\W/g,'').toLowerCase();
+  var abspath = __dirname + '/../static';
+  var relpath = '/img/users/' + dirname;
+  fs.mkdirSync(abspath + relpath);
+
+  var extension = path.extname(oldpath);
+  relpath += '/cover' + extension;
+  fs.renameSync(oldpath, abspath + relpath);
+
+  this.cover = relpath;
 };
 

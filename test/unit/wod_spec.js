@@ -34,11 +34,8 @@ describe('User', function(){
   describe('new', function(){
     it('should create a new User object', function(done){
       expect(wod).to.be.instanceof(Wod);
-      console.log('>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<');
       expect(wod.name).to.equal('Angie');
-      console.log('>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<');
       expect(wod.category).to.equal('AMRAP');
-      console.log('>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<');
       done();
     });
   });

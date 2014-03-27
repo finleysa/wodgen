@@ -13,8 +13,16 @@ body {
   background-repeat: no-repeat;
 }
 
+.myRadius {
+  border-radius: 30px;
+}
+
 .space{
   margin: 10px;
+}
+
+.clear{
+  clear: both;
 }
 
 .fancy {
@@ -34,6 +42,20 @@ body {
 
 .red {
   background-color: @top-bar;
+}
+
+#bottom {
+  height:  200px;
+  background-color: #FFF;
+  border-top: 11px solid @top-bar;
+  color: #34495e;
+  opacity: .9;
+}
+
+#bottom-background {
+  height:  200px;
+  background-color: @top-bar;
+  opacity: .9;
 }
 
 //<======Template======>
@@ -90,7 +112,18 @@ ul .left {
   border-radius: 10px;
 }
 
-#menu {
+#pages > label {
+  color: #224FDD;
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow:
+      -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000;  
+}
+
+.menu {
   margin: 20px;
   padding: 10px;
   border: 1px solid black;
@@ -107,5 +140,4 @@ ul .left {
 }
 
 .page {
-  font-size: 20px;
 }
