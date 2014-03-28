@@ -80,7 +80,6 @@
       }
     }
     if(page > 0){
-      
       var $pagesLabel = $('<label>').text('Pages: ');
       $pagesLabel.addClass('left space');
       $('#pages').prepend($pagesLabel);
@@ -94,12 +93,12 @@
     var $instructions = $('<div>');
     var $summary = $('<div>');
     var $a = $('<a>');
-    
+
     $name.text(wod.name);
     $instructions.text(wod.instructions);
     $summary.text(wod.summary);
     $a.text('Do This Wod');
-    
+
     $container.addClass('createWodForm space');
 
     $name.attr('href','http://www.youtube.com/results?search_query='+wod.name+'%20crossfit%20demo');

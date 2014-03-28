@@ -5,8 +5,8 @@
 process.env.DBNAME = 'note2-test';
 var expect = require('chai').expect;
 var Mongo = require('mongodb');
-//var exec = require('child_process').exec;
-//var fs = require('fs');
+var exec = require('child_process').exec;
+var fs = require('fs');
 var User, sue;
 
 describe('User', function(){
@@ -104,16 +104,15 @@ describe('User', function(){
       });
     });
   });
-});
-/*
-  describe('.addPhoto', function(){
+
+  describe('.addCover', function(){
     beforeEach(function(done){
       var testdir = __dirname + '/../../app/static/img/users/test*';
       var cmd = 'rm -rf ' + testdir;
 
       exec(cmd, function(){
         var origfile = __dirname + '/../fixtures/oprah.jpg';
-        var copyfile = __dirname + '/../fixtures/oprah-copy.png';
+        var copyfile = __dirname + '/../fixtures/oprah-copy.jpg';
         fs.createReadStream(origfile).pipe(fs.createWriteStream(copyfile));
         global.nss.db.dropDatabase(function(err,result){
           done();
@@ -128,11 +127,10 @@ describe('User', function(){
       userObj.password = '1234';
       var u1 = new User(userObj);
 
-      var oldname = __dirname + '/../fixtures/oprah-copy.png';
-      u1.addPhoto(oldname);
-      expect(u1.userPhoto).to.equal('/img/users/testmattmattcom/photo.png');
+      var oldname = __dirname + '/../fixtures/oprah-copy.jpg';
+      u1.addCover(oldname);
+      expect(u1.cover).to.equal('/img/users/testmattmattcom/cover.jpg');
       done();
     });
   });
 });
-*/

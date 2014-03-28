@@ -9,9 +9,30 @@ block content
             h1= user.name
             h2= user.email
             h3#progressPics: a(href='/user/progress') Progress Pics
-            if user.wods
-              - for (var i=0; i<user.wods.length; i++)
-                h5= user.wodsCompleted[i].name
-                h5= user.wods[i].date
+            .row
+              .small-6.columns
+                if user.wods
+                  - for (var i=0; i<user.wods.length; i++)
+                    .workoutList
+                    h3= user.wodsCompleted[i][0].name
+                    h5= user.wods[i].date
+              .small-6.columns
+                if user.wods
+                  - for (var i=0; i<user.wods.length; i++)
+                    if !user.wods[i].finished
+                      if user.wodsCompleted[i][0].category == 'AMRAP'
+                        .reps
+                          h5 Record our reps
+                          input
+                          button.tiny.alert.radius Record
+                      if user.wodsCompleted[i][0].category == 'For Time'
+                        .forTime
+                          h5 Record Your Time
+                          input
+                          button.tiny.alert.radius Record
+
+            // 
+                if user.
+                  - for (var i=0; i<user.wods.length; i++)
 
 

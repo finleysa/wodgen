@@ -7,9 +7,9 @@ var expect = require('chai').expect;
 //var Mongo = require('mongodb');
 //var exec = require('child_process').exec;
 //var fs = require('fs');
-var Wod, wod;
+var Wod, wod, wodName, wodId;
 
-describe('User', function(){
+describe('Wod', function(){
 
   before(function(done){
     var initMongo = require('../../app/lib/init-mongo');
@@ -27,7 +27,12 @@ describe('User', function(){
                       movement: ['thruster', 'jumprope'],
                       instructions: 'run in circles'
       });
-      done();
+      wod.insert(function(){
+        wodId = wod._id;
+        wodName = wod.name;
+        done();
+      });
+
     });
   });
 
@@ -37,6 +42,25 @@ describe('User', function(){
       expect(wod.name).to.equal('Angie');
       expect(wod.category).to.equal('AMRAP');
       done();
+    });
+  });
+
+  describe('.findByName', function(){
+    it('should find by wod name', function(done){
+      Wod.findByName(wodName, function(wod){
+        expect(wod.name).to.equal('Angie');
+        done();
+      });
+    });
+  });
+
+  describe('.findAll', function(){
+    it('should find all wods', function(done){
+      Wod.findAll(function(wods){
+        console.log(wods);
+        expect(wods).to.have.length(1);
+        done();
+      });
     });
   });
 });

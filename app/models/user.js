@@ -40,8 +40,8 @@ User.prototype.insert = function(fn){
 
 User.prototype.updateWods = function(wod,fn){
   this.wodsCompleted.push(_.flatten(wod));
-  var date = new Date();
-  var x = {date:date, wod:wod};
+  var date = new Date().toLocaleDateString();
+  var x = {date:date, finished:false};
   this.wods.push(x);
   
   console.log(this.wods);

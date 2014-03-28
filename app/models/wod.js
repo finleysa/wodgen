@@ -30,8 +30,6 @@ Wod.findAll = function(fn){
 
 Wod.findByName = function(name, fn){
   wods.find({name:name}).toArray(function(err, wod){
-    console.log('THE WOD YO!!!!!');
-    console.log(wod);
-    fn(wod);
+    fn(wod[0]);
   });
 };
