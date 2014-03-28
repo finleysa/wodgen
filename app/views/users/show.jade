@@ -6,33 +6,27 @@ block content
       #container
         if user
           #tabWrap
-            h1= user.name
-            h2= user.email
-            h3#progressPics: a(href='/user/progress') Progress Pics
             .row
-              .small-6.columns
+              .small-4.columns
+                img(src= user.cover)
+              .small-8.columns
+                h1= user.name
+                h2= user.email
+                h3#progressPics: a(href='/user/progress') Progress Pics
+            .row
+              .small-12.columns
                 if user.wods
                   - for (var i=0; i<user.wods.length; i++)
-                    .workoutList
-                    h3= user.wodsCompleted[i][0].name
+                    h3= user.wodsCompleted[i].name
                     h5= user.wods[i].date
-              .small-6.columns
-                if user.wods
-                  - for (var i=0; i<user.wods.length; i++)
                     if !user.wods[i].finished
-                      if user.wodsCompleted[i][0].category == 'AMRAP'
+                      if user.wodsCompleted[i].category == 'AMRAP'
                         .reps
                           h5 Record our reps
                           input
                           button.tiny.alert.radius Record
-                      if user.wodsCompleted[i][0].category == 'For Time'
+                      if user.wodsCompleted[i].category == 'For Time'
                         .forTime
                           h5 Record Your Time
                           input
                           button.tiny.alert.radius Record
-
-            // 
-                if user.
-                  - for (var i=0; i<user.wods.length; i++)
-
-

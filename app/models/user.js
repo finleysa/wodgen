@@ -39,12 +39,11 @@ User.prototype.insert = function(fn){
 };
 
 User.prototype.updateWods = function(wod,fn){
-  this.wodsCompleted.push(_.flatten(wod));
+  console.log(wod);
+  this.wodsCompleted.push(wod);
   var date = new Date().toLocaleDateString();
   var x = {date:date, finished:false};
   this.wods.push(x);
-  
-  console.log(this.wods);
   users.update({_id:this._id}, this, function(err, count){
     console.log('update');
     fn(count);

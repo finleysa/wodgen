@@ -12,7 +12,7 @@ exports.register = function(req, res){
     user.insert(function(){
       if(user._id){
         req.session.userId = user._id;
-        res.redirect('');
+        res.redirect('/users/show');
       }else{
         res.redirect('/failedregister');
       }

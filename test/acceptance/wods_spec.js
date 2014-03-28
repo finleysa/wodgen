@@ -5,11 +5,11 @@ var app = require('../../app/app');
 var request = require('supertest');
 //var fs = require('fs');
 //var exec = require('child_process').exec;
-//var expect = require('chai').expect;
+var expect = require('chai').expect;
 
 
 //gobal variables
-var User, wod, wodId;
+var User, Wod, wod, wodId;
 
 describe('wods', function(){
 
@@ -18,19 +18,18 @@ describe('wods', function(){
     .get('/')
     .end(function (err, res){
       User = require('../../app/models/user');
-      wod = require('../../app/models/wod');
+      Wod = require('../../app/models/wod');
       done();
     });
   });
 
   beforeEach(function(done){
-    var wod  = new Wod({name:'Angie',
+    wod  = new Wod({name:'Angie',
                         summary:'1234',
                         category: 'AMRAP',
                         movement: ['thruster', 'jumprope'],
-                        instructions: 'run in circles'
+                        instructions: 'run in circles'});
     wod.insert(function(wod){
-      wodId = listing._id;
       done();
     });
   });
@@ -43,15 +42,18 @@ describe('wods', function(){
     });
   });
 
-  /*
-  describe('GET /wods/new', function(){
+  describe('GET /wods/all', function(){
     it('should display page to create a new wod', function(done){
       request(app)
-      .get('/wods/new')
-      .expect(200, done);
+      .get('/wods/all')
+      .end(function(err, res){
+        console.log(res.body[0]);
+        expect(res.body[0]).to.be.instanceof(Object);
+        done();
+      });
     });
   });
-
+/*
   describe('GET /wods/:id', function(){
     it('should show the the profile of a wod', function(done){
       request(app)
