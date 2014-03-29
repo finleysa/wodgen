@@ -28,13 +28,14 @@
   // On change of filter input text
 
   function showPage(){
-    debugger;
-    console.log('filtered:' + filtered[0].name);
-    var page = $('#page').text();
+    var page = this.textContent;
     var index = page * 5;
+    console.log(index);
     $('#wods').empty();
-    for(var i=5; i < 0; i++){
-      showWod(filtered[index--]);
+    for(var i=5; i > 0; i--){
+      if(filtered[index - i]){
+        showWod(filtered[index - i]);
+      }
     }
   }
 
@@ -58,26 +59,36 @@
   function category(){
     $('#wods').empty();
     $('#pages').empty();
+
+    var $firstPage = $('<label>').text('1');
+    $firstPage.addClass('page left space');
+    $('#pages').append($firstPage);
+
     var filters = $(this).text().replace(/\s/g,'').toLowerCase().split(',');
-    var count = 0;
-    var page = 0;
+    var count = 1;
+    var page = 1;
     filtered = [];
     for (var i = 0; i < wods.length; i++) {
       for (var j = 0; j < filters.length; j++) {
         for (var k = 0; k < wods[i].movement.length; k++) {
           if (wods[i].movement[k] === filters[j]) {
-            showWod(wods[i]);
+            if(count <= 5){
+              showWod(wods[i]);
+            }
             filtered.push(wods[i]);
+            console.log(wods[i].movement[k] +'boobs'+ filters[j]);
             count++;
-            console.log(count);
+            console.log(count-1);
+            if(count % 5 === 0){
+              console.log(count);
+              page++;
+              var $pages = $('<label>').text(page + ' ');
+              $pages.addClass('page left space');
+              $('#pages').append($pages);
+              break;
+            }
           }
-          if(count % 5 === 0){
-            page++;
-            var $pages = $('<label>').text(page + ' ');
-            $pages.addClass('page left space');
-            $('#pages').append($pages);
-            break;
-          }
+
         }
       }
     }
@@ -85,11 +96,11 @@
       var $pagesLabel = $('<label>').text('Pages: ');
       $pagesLabel.addClass('left space');
       $('#pages').prepend($pagesLabel);
-      page = 0;
     }
   }
   
   // show wod information
+  
   function showWod(wod) {
     var $container = $('<div>');
     var $name = $('<a>');

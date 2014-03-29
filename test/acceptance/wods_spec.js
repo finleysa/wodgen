@@ -9,7 +9,7 @@ var expect = require('chai').expect;
 
 
 //gobal variables
-var User, Wod, wod, wodId;
+var User, Wod, wod/*, wodId*/;
 
 describe('wods', function(){
 

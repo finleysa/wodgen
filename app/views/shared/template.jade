@@ -22,8 +22,9 @@ html(class='no-js', lang='en')
         ul.right
           li: a(href="/") Home
           li.divider
-          li: a(href="/logout") Logout
-          li.divider
+          if user
+            li: a(href="/logout") Logout
+            li.divider
           li.has-form.has-dropdown.not-click
             a(href='#') Menu
             ul.dropdown
@@ -34,9 +35,6 @@ html(class='no-js', lang='en')
               if user
                 li: a(href="/users/show") Profile
                 li: a(href="#" data-reveal-id="createWod") Create Wod
-                li.has-form
-                  form(action='/logout', method='post')
-                    button#logout.tiny.radius Logout
 
     .row.radius
       .small-12.columns
