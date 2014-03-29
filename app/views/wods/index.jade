@@ -3,8 +3,43 @@ block content
     .row
       .small-12.columns
         #container
+          #header.spaceVertical
+            label.push.headLabel Search The Workout Database
+            .row
+              .small-3.columns
+                label.explanation.push Search Filter
+                input#filterBy
+              .small-6.columns
+                p.explanation Once you find a workout you can add it to your own workout database that will track your progress! Click the name of the WOD to see demos via YouTube.
+              .small-3.columns
           .row
             .small-4.columns
+              dl.accordion(data-accordion)
+                dd.active
+                  a(href="#panel1") Bodyweight Movements
+                  #panel1.content.active
+                    button.tiny.radius.movement Push-Up
+                    button.tiny.radius.movement Sit-up
+                    button.tiny.radius.movement Air Squat
+                    button.tiny.radius.movement Muscle-Up
+                    button.tiny.radius.movement Burpees
+                    button.tiny.radius.movement Handstand Push-up
+
+                dd
+                  a(href="#panel2") Olympic Lifts
+                  #panel2.content
+                    button.tiny.radius.movement Clean & Jerk
+                    button.tiny.radius.movement Clean & Press
+                    button.tiny.radius.movement Hang Cleann
+                    button.tiny.radius.movement Snatch
+                    button.tiny.radius.movement Power Snatch
+                dd
+                  a(href="#panel3") Power Lifts
+                  #panel3.content
+                    button.tiny.radius.movement Squat
+                    button.tiny.radius.movement Deadlift
+                    button.tiny.radius.movement Bench Press
+              //
                 .menu.myRadius
                   label.fancy Filter
                   input#filterBy

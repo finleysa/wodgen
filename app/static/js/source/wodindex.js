@@ -28,10 +28,12 @@
   // On change of filter input text
 
   function showPage(){
+    debugger;
+    console.log('filtered:' + filtered[0].name);
     var page = $('#page').text();
     var index = page * 5;
     $('#wods').empty();
-    for(var i=5; i > 0; i--){
+    for(var i=5; i < 0; i++){
       showWod(filtered[index--]);
     }
   }
@@ -83,6 +85,7 @@
       var $pagesLabel = $('<label>').text('Pages: ');
       $pagesLabel.addClass('left space');
       $('#pages').prepend($pagesLabel);
+      page = 0;
     }
   }
   

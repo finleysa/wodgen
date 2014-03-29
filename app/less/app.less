@@ -2,23 +2,32 @@
 @background: rgb(74, 96, 104);
 @import url(http://fonts.googleapis.com/css?family=Chau+Philomene+One);
 
-h1, h2, h3, h4, h5, a {
+h1, h2, h3, h4, h5, a, label {
   font-family: 'Chau Philomene One';
 }
 
 body {
   background-color: lightgrey;
-  background-image: url(/img/background.jpg);
+  background-image: url(/img/colorbackground.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+img {
+  opacity: 1 !important;
+  box-shadow: 10px 10px 5px #888888;
 }
 
 .myRadius {
   border-radius: 30px;
 }
 
-.space{
+.space {
   margin: 10px;
+}
+
+.spaceVertical {
+  margin: 10px 0;
 }
 
 .clear{
@@ -29,6 +38,13 @@ body {
   font-weight: bold;
   font-size: 20px;
   color: white;
+  text-align: center;
+}
+
+.fancy2 {
+  font-weight: bold;
+  font-size: 20px;
+  color: black;
   text-align: center;
 }
 
@@ -62,7 +78,7 @@ body {
 
 .createWodForm {
   background-color: #ecf0f1;
-  padding: 20px;
+  padding: 5px;
   border: 7px solid @top-bar;
   border-radius: 20px;
   text-align: center;
@@ -86,7 +102,7 @@ ul .left {
 #tabWrap {
   position: relative;
   background-color: #fff;
-  opacity: .9;
+  opacity: .96;
   border-radius: 10px;
   border: 12px solid #b93232;
   padding: 10px;
@@ -131,7 +147,11 @@ ul .left {
 }
 
 #filterBy {
-  margin: 0 0 0 35px;
+  margin: 0 0 0 20px;
+}
+
+.push{
+  margin: 0 0 0 20px;
 }
 
 .movement {
@@ -139,5 +159,47 @@ ul .left {
   background-color: #1a4153;
 }
 
-.page {
+.accordion dd > a {
+  background: @top-bar;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.accordion dd.active > a {
+  background: #333333;
+}
+
+.accordion dd.active > a:hover {
+  color: white;
+}
+
+.accordion dd > a:hover{
+  color: black;
+}
+
+.headLabel {
+  text-align: center;
+  font-size: 48px;
+  color: white;
+  text-shadow:
+      -2px -2px 0 #000,
+      2px -2px 0 #000,
+      -2px 2px 0 #000,
+      2px 2px 0 #000;  
+}
+
+#header{
+  background: #333333;
+}
+
+p.explanation {
+  color: white;
+}
+
+label.explanation {
+  color: white;
+  font-size: 16px;
 }

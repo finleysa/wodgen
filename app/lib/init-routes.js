@@ -23,7 +23,7 @@ function load(app, fn){
   app.get('/failedaddwod', d, home.failedAddWod);
 
   app.post('/register', d, users.register);
-  app.post('/logout', d, users.logout);
+  app.get('/logout', d, users.logout);
   app.post('/login', d, users.login);
   app.get('/users/show', d, users.show);
   app.get('/users/addwod/:wodName', d, users.addWod);
