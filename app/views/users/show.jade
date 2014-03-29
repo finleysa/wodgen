@@ -17,16 +17,27 @@ block content
               .small-12.columns
                 if user.wods
                   - for (var i=0; i<user.wods.length; i++)
-                    h3= user.wodsCompleted[i].name
-                    h5= user.wods[i].date
-                    if !user.wods[i].finished
-                      if user.wodsCompleted[i].category == 'AMRAP'
-                        .reps
-                          h5 Record our reps
-                          input
-                          button.tiny.alert.radius Record
-                      if user.wodsCompleted[i].category == 'For Time'
-                        .forTime
-                          h5 Record Your Time
-                          input
-                          button.tiny.alert.radius Record
+                    .workout
+                      h3= user.wodsCompleted[i].name
+                      h5= user.wods[i].date
+                      if !user.wods[i].finished
+                        if user.wodsCompleted[i].category == 'AMRAP'
+                          .reps
+                            .row
+                              .small-2.columns
+                                h5 Record Total Reps 
+                              .small-3.columns
+                                input
+                              .small-2.columns
+                                button.tiny.alert.radius Record
+                              .small-5.columns
+                        if user.wodsCompleted[i].category == 'For Time'
+                          .forTime
+                            .row
+                              .small-2.columns
+                                h5 Record Your Time
+                              .small-3.columns
+                                input
+                              .small-2.columns
+                                button.tiny.alert.radius Record
+                              .small-5.columns
