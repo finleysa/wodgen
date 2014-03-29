@@ -15,7 +15,9 @@ function User(user){
   this.password = user.password || '';
   this.wods = [];
   this.wodsCompleted = [];
+  this.finishedWods = [];
 }
+
 
 User.prototype.hashPassword = function(fn){
   var self = this;
@@ -37,26 +39,28 @@ User.prototype.insert = function(fn){
     }
   });
 };
+/*
+db.schools.find( { zipcode: 63109 },
+                 { students: { $elemMatch: { school: 102 } } } )
+*/
 
 User.prototype.updateWods = function(wod,fn){
-  console.log(wod);
   this.wodsCompleted.push(wod);
   var date = new Date().toLocaleDateString();
-  var x = {date:date, finished:false};
+  var x = {name:wod.name, date:date, finished:false};
   this.wods.push(x);
   users.update({_id:this._id}, this, function(err, count){
-    console.log('update');
     fn(count);
   });
 };
 
+/*
 exports.logout = function(req, res){
   req.session.destroy(function(){
     res.redirect('/');
   });
 };
 
-/*
 User.prototype.addPhoto = function(oldpath){
   var dirname = this.email.replace(/\W/g,'').toLowerCase();
   var abspath = __dirname + '/../static';
@@ -76,6 +80,27 @@ User.findById = function(id, fn){
 
   users.findOne({_id:_id}, function(err, record){
     fn(_.extend(record, User.prototype));
+  });
+};
+
+User.finished = function(email, wodName, date, score, fn){
+  users.findOne({email:email}, { wods: { $elemMatch: { date:date, name:wodName } } }, function(err, record){
+    users.findOne({email:email}, function(err, user){
+      console.log('>>>>>>>>>>RECORD');
+      console.log(record);
+      record.score = score;
+      record.date = date;
+      record.name = record.wods[0].name;
+      delete record.wods;
+      console.log('>>>>>>>>>>USER');
+      user.finishedWods.push(record);
+      console.log(user);
+      users.update({_id:user._id}, user, function(err, count){
+        users.update({email:email}, { $pull: { wods: { date:date, name:wodName } } }, function(err, record){
+          fn(count);
+        });
+      });
+    });
   });
 };
 

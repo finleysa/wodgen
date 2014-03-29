@@ -26,6 +26,14 @@ exports.logout = function(req, res){
   });
 };
 
+exports.finishedWod = function(req, res) {
+  console.log(req.body);
+  console.log('<><><><><><><><><><><><><>');
+  User.finished(req.body.email, req.body.wodName, req.body.date, req.body.score, function(data){
+    res.send(data);
+  });
+};
+
 exports.login = function(req, res){
   User.findByEmailAndPassword(req.body.email, req.body.password, function(user){
     if(user){

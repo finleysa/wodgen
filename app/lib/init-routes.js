@@ -27,6 +27,7 @@ function load(app, fn){
   app.post('/login', d, users.login);
   app.get('/users/show', d, users.show);
   app.get('/users/addwod/:wodName', d, users.addWod);
+  app.post('/users/finishedWod', d, users.finishedWod);
   
   app.get('/wods', d, wods.index);
   app.get('/wods/all', d, wods.retrieveAll);

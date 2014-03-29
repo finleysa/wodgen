@@ -11,33 +11,40 @@ block content
                 img(src= user.cover)
               .small-8.columns
                 h1= user.name
-                h2= user.email
+                h2#email= user.email
                 h3#progressPics: a(href='/user/progress') Progress Pics
             .row
-              .small-12.columns
+              .small-6.columns
                 if user.wods
                   - for (var i=0; i<user.wods.length; i++)
                     .workout
-                      h3= user.wodsCompleted[i].name
+                      h3= user.wods[i].name
                       h5= user.wods[i].date
                       if !user.wods[i].finished
                         if user.wodsCompleted[i].category == 'AMRAP'
-                          .reps
-                            .row
-                              .small-2.columns
-                                h5 Record Total Reps 
-                              .small-3.columns
-                                input
-                              .small-2.columns
-                                button.tiny.alert.radius Record
-                              .small-5.columns
+                          .row
+                            .small-4.columns
+                              h5.test Record Total Reps 
+                            .small-5.columns
+                              input.score
+                            .small-3.columns
+                              button.tiny.alert.radius.record Record
                         if user.wodsCompleted[i].category == 'For Time'
-                          .forTime
-                            .row
-                              .small-2.columns
-                                h5 Record Your Time
-                              .small-3.columns
-                                input
-                              .small-2.columns
-                                button.tiny.alert.radius Record
-                              .small-5.columns
+                          .row
+                            .small-4.columns
+                              h5 Record Your Time
+                            .small-5.columns
+                              input.score
+                            .small-3.columns
+                              button.tiny.alert.radius.record Record
+              .small-6.columns
+                if user.finishedWods.length > 0
+                  h3 Workouts Recently Completed:
+                  - for (var i=0; i<5; i++)
+                    if user.finishedWods[i]
+                      a: h4= user.finishedWods[i].name
+                      h4 Score: #{user.finishedWods[i].score}
+                      h4 Date Completed: #{user.finishedWods[i].date}
+
+block scripts
+  script(src='/js/source/usershow.js')
