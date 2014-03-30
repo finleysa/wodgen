@@ -38,6 +38,30 @@ describe('users', function(){
     });
   });
 
+  describe('GET /failedlogin', function(){
+    it('should display the home page', function(done){
+      request(app)
+      .get('/failedlogin')
+      .expect(200, done);
+    });
+  });
+
+  describe('GET /failedregister', function(){
+    it('should display the home page', function(done){
+      request(app)
+      .get('/failedregister')
+      .expect(200, done);
+    });
+  });
+
+  describe('GET /failedaddwod', function(){
+    it('should display the home page', function(done){
+      request(app)
+      .get('/failedaddwod')
+      .expect(200, done);
+    });
+  });
+
   describe('GET /auth', function(){
     it('should display the auth page', function(done){
       request(app)
