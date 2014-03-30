@@ -15,7 +15,9 @@ block content
                 h3#progressPics: a(href='/user/wodsCompleted') All Wods Completed
             .row
               .small-6.columns
-                if user.wods
+                if user.wods.length == 0
+                  p When you add a WOD it will show up here so you can update your score and save to the database.
+                if user.wods.length > 0
                   h3 Record Your Time / Reps:
                   - for (var i=0; i<user.wods.length; i++)
                     .workout
@@ -44,7 +46,7 @@ block content
                   - for (var i=user.finishedWods.length-1; i>user.finishedWods.length-4; i--)
                     if user.finishedWods[i]
                       .wod
-                        a: h4= user.finishedWods[i].name
+                        h4: a= user.finishedWods[i].name
                         h4 Score: #{user.finishedWods[i].score}
                         h4 Date Completed: #{user.finishedWods[i].date}
 

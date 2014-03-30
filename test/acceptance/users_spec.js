@@ -3,10 +3,10 @@
 process.env.DBNAME = 'users-test';
 var app = require('../../app/app');
 var request = require('supertest');
-//var expect = require('chai').expect;
-//var fs = require('fs');
-//var exec = require('child_process').exec;
-var User, /*cookie,*/ sue;
+var expect = require('chai').expect;
+var fs = require('fs');
+var exec = require('child_process').exec;
+var User, cookie, sue;
 
 describe('users', function(){
 
@@ -37,15 +37,13 @@ describe('users', function(){
       .expect(200, done);
     });
   });
-});
-/*
+
   describe('GET /auth', function(){
     it('should display the auth page', function(done){
       request(app)
-      .get('/auth')
+      .get('/logout')
       .end(function(err, res){
-        expect(res.status).to.equal(200);
-        expect(res.text).to.include('User Authentication');
+        expect(res.status).to.equal(302);
         done();
       });
     });
@@ -61,7 +59,7 @@ describe('users', function(){
         var copyfile = __dirname + '/../fixtures/oprah-copy.jpg';
         fs.createReadStream(origfile).pipe(fs.createWriteStream(copyfile));
         global.nss.db.dropDatabase(function(err, result){
-          var s = new User({email:'testsue@aol.com', password:'abcd'});
+          var s = new User({name:'testsue', email:'testsue@aol.com', password:'abcd'});
           s.hashPassword(function(){
             s.insert(function(){
               done();
@@ -75,9 +73,10 @@ describe('users', function(){
       var oldname = __dirname + '/../fixtures/oprah-copy.jpg';
       request(app)
       .post('/register')
+      .field('name', 'testbob')
       .field('email', 'testbob@aol.com')
       .field('password', '1234')
-      .attach('userPhoto', oldname)
+      .attach('cover', oldname)
       .end(function(err, res){
         expect(res.status).to.equal(302);
         done();
@@ -90,15 +89,14 @@ describe('users', function(){
       .post('/register')
       .field('email', 'testsue@aol.com')
       .field('password', 'abcd')
-      .attach('userPhoto', oldname)
+      .attach('cover', oldname)
       .end(function(err, res){
-        expect(res.status).to.equal(200);
-        expect(res.text).to.include('User Authentication');
+        expect(res.status).to.equal(302);
         done();
       });
     });
   });
-
+  
   describe('POST /login', function(){
     it('should login a user', function(done){
       request(app)
@@ -118,8 +116,7 @@ describe('users', function(){
       .field('email', 'testbob@aol.com')
       .field('password', '1234')
       .end(function(err, res){
-        expect(res.status).to.equal(200);
-        expect(res.text).to.include('User Authentication');
+        expect(res.status).to.equal(302);
         done();
       });
     });
@@ -137,10 +134,10 @@ describe('users', function(){
       });
     });
 
-    describe('GET /users:id', function(){
-      it('should login a user', function(done){
+    describe('GET /users/show', function(){
+      it('should show user page', function(done){
         request(app)
-        .get('/users/1234')
+        .get('/users/show')
         .set('cookie', cookie)
         .end(function(err, res){
           expect(res.status).to.equal(200);
@@ -151,4 +148,3 @@ describe('users', function(){
   });
   /////END DESCRIBE
 });
-*/
