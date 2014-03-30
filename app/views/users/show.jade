@@ -12,10 +12,11 @@ block content
               .small-8.columns
                 h1= user.name
                 h2#email= user.email
-                h3#progressPics: a(href='/user/progress') Progress Pics
+                h3#progressPics: a(href='/user/wodsCompleted') All Wods Completed
             .row
               .small-6.columns
                 if user.wods
+                  h3 Record Your Time / Reps:
                   - for (var i=0; i<user.wods.length; i++)
                     .workout
                       h3= user.wods[i].name
@@ -40,11 +41,12 @@ block content
               .small-6.columns
                 if user.finishedWods.length > 0
                   h3 Workouts Recently Completed:
-                  - for (var i=0; i<5; i++)
+                  - for (var i=user.finishedWods.length-1; i>user.finishedWods.length-4; i--)
                     if user.finishedWods[i]
-                      a: h4= user.finishedWods[i].name
-                      h4 Score: #{user.finishedWods[i].score}
-                      h4 Date Completed: #{user.finishedWods[i].date}
+                      .wod
+                        a: h4= user.finishedWods[i].name
+                        h4 Score: #{user.finishedWods[i].score}
+                        h4 Date Completed: #{user.finishedWods[i].date}
 
 block scripts
   script(src='/js/source/usershow.js')
