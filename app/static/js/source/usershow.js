@@ -6,10 +6,8 @@
 
   function initialize(){
     $('.row').on('click','.record', record);
+    $('#wodselect').change(graph);
   }
-
-  //single=Single&multiple=Multiple&multiple=Multiple3&check=check2&radio=radio1
-  //var name = $(this).closest('tr').children('td:nth-child(6)').children('select').val();
 
   function record(){
     var email = $('#email').text();
@@ -23,6 +21,11 @@
     var type = 'POST';
     var success = console.log('cool');
     $.ajax({url:url, type:type, data:data, success:success});
+  }
+
+  function graph(){
+    var wod = $('#wodselect').val();
+    window.location.href = '/users/graph/' + wod;
   }
 })();
 

@@ -9,14 +9,20 @@ block content
             .row
               .small-4.columns
                 img(src= user.cover)
-              .small-8.columns
+              .small-4.columns
                 h1= user.name
                 h2#email= user.email
-                h3#progressPics: a(href='/user/wodsCompleted') All Wods Completed
+              .small-4.columns
+                h4 Select a Wod to View History
+                select#wodselect
+                  option(selected='selected') Choose Workout
+                  - for wod in wods
+                    option= wod
             .row
               .small-6.columns
                 if user.wods.length == 0
-                  p When you add a WOD it will show up here so you can update your score and save to the database.
+                  .medspace
+                  p When you add a WOD it will show up here so you can update your score and save it to the database. Click on recently completed Wods to view the history of your performance.
                 if user.wods.length > 0
                   h3 Record Your Time / Reps:
                   - for (var i=0; i<user.wods.length; i++)

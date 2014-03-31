@@ -2,6 +2,7 @@
 
 var User = require('../models/user');
 var Wod = require('../models/wod');
+var _ = require('lodash');
 //var gravatar = require('gravatar');
 //var request = require('request');
 
@@ -53,7 +54,10 @@ exports.login = function(req, res){
 exports.show = function(req, res){
   User.findById(req.session.userId, function(user){
     if(user) {
-      res.render('users/show', {user:user});
+      var myArray = _.map(user.finishedWods, function(wod){return wod.name;});
+      myArray = _.uniq(myArray);
+      console.log(myArray);
+      res.render('users/show', {user:user, wods:myArray});
     }else{
       res.redirect('/failedaddwod');
     }
@@ -77,7 +81,6 @@ exports.addWod = function(req, res){
 exports.returnFinished = function(req, res){
   User.findById(req.session.userId, function(wods){
     res.send(wods.finishedWods);
-    //res.send({user:user.finishedWods});
   });
 };
 
