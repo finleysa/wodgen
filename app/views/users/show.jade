@@ -46,7 +46,7 @@ block content
                   - for (var i=user.finishedWods.length-1; i>user.finishedWods.length-4; i--)
                     if user.finishedWods[i]
                       .wod
-                        h4: a= user.finishedWods[i].name
+                        h4: a(href='/users/graph/'+ user.finishedWods[i].name)= user.finishedWods[i].name
                         h4 Score: #{user.finishedWods[i].score}
                         h4 Date Completed: #{user.finishedWods[i].date}
 

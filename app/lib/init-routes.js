@@ -28,6 +28,8 @@ function load(app, fn){
   app.get('/users/show', d, users.show);
   app.get('/users/addwod/:wodName', d, users.addWod);
   app.post('/users/finishedWod', d, users.finishedWod);
+  app.get('/users/returnFinished', d, users.returnFinished);
+  app.get('/users/graph/:wodName', d, users.graph);
   
   app.get('/wods', d, wods.index);
   app.get('/wods/all', d, wods.retrieveAll);

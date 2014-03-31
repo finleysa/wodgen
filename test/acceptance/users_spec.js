@@ -93,6 +93,21 @@ describe('users', function(){
       });
     });
 
+    /*
+    it('should register a user', function(done){
+      request(app)
+      .post('/users/finishedWod')
+      .field('wodName', 'testbob')
+      .field('email', 'testbob@aol.com')
+      .field('date', 'March 4th, 2014')
+      .end(function(err, res){
+        expect(1).to.equal(1);
+      .field('score', '1234')
+        done();
+      });
+    });
+    */
+
     it('should register a user', function(done){
       var oldname = __dirname + '/../fixtures/oprah-copy.jpg';
       request(app)

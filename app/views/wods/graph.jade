@@ -1,0 +1,12 @@
+extends ../shared/template
+block content
+    input#wodName(type='hidden', value= wodName)
+    script(src="//www.google.com/jsapi")
+    script.
+      google.load('visualization', '1', {packages: ['corechart']});
+    script(src='/js/source/graph.js')
+    .row
+      .small-12.columns
+        .bigspace
+          div#visualization(style="width: 900px; height: 400px;")
+    

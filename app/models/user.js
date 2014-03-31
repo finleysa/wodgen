@@ -86,15 +86,11 @@ User.findById = function(id, fn){
 User.finished = function(email, wodName, date, score, fn){
   users.findOne({email:email}, { wods: { $elemMatch: { date:date, name:wodName } } }, function(err, record){
     users.findOne({email:email}, function(err, user){
-      console.log('>>>>>>>>>>RECORD');
-      console.log(record);
       record.score = score;
       record.date = date;
       record.name = record.wods[0].name;
       delete record.wods;
-      console.log('>>>>>>>>>>USER');
       user.finishedWods.push(record);
-      console.log(user);
       users.update({_id:user._id}, user, function(err, count){
         users.update({email:email}, { $pull: { wods: { date:date, name:wodName } } }, function(err, record){
           fn(count);
@@ -133,3 +129,13 @@ User.prototype.addCover = function(oldpath){
   this.cover = relpath;
 };
 
+
+
+/*
+User.findFinishedByName = function(id, name, fn){
+  console.log(id);
+  users.find({ finishedWods: { $elemMatch: { name:name} } }).toArray(function(err, wods){
+    fn(wods[0]);
+  });
+};
+*/

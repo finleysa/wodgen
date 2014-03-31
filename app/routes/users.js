@@ -28,7 +28,6 @@ exports.logout = function(req, res){
 
 exports.finishedWod = function(req, res) {
   console.log(req.body);
-  console.log('<><><><><><><><><><><><><>');
   User.finished(req.body.email, req.body.wodName, req.body.date, req.body.score, function(data){
     res.send(data);
   });
@@ -63,12 +62,9 @@ exports.show = function(req, res){
 
 exports.addWod = function(req, res){
   Wod.findByName(req.params.wodName, function(wod){
-    console.log('1');
     User.findById(req.session.userId, function(user){
-      console.log('2');
       if (user){
         user.updateWods(wod, function(){
-          console.log('3');
           res.redirect('users/show');
         });
       }else{
@@ -78,3 +74,13 @@ exports.addWod = function(req, res){
   });
 };
 
+exports.returnFinished = function(req, res){
+  User.findById(req.session.userId, function(wods){
+    res.send(wods.finishedWods);
+    //res.send({user:user.finishedWods});
+  });
+};
+
+exports.graph = function(req, res){
+  res.render('wods/graph', {wodName:req.params.wodName});
+};

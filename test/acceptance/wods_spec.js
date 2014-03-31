@@ -53,6 +53,7 @@ describe('wods', function(){
       });
     });
   });
+
 /*
   describe('GET /wods/:id', function(){
     it('should show the the profile of a wod', function(done){

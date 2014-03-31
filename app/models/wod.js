@@ -2,6 +2,7 @@
 
 module.exports = Wod;
 var wods = global.nss.db.collection('wods');
+//var users = global.nss.db.collection('users');
 //var Mongo = require('mongodb');
 //var _ = require('lodash');
 //var fs = require('fs');
@@ -33,3 +34,4 @@ Wod.findByName = function(name, fn){
     fn(wod[0]);
   });
 };
+
