@@ -5,9 +5,11 @@ Crossfit Workout Database and Tracker
 [![Coverage Status](https://coveralls.io/repos/finleysa/wodgen/badge.png?branch=master)](https://coveralls.io/r/finleysa/wodgen?branch=master)
 [![Dependency Status](https://gemnasium.com/finleysa/wodgen.svg)](https://gemnasium.com/finleysa/wodgen)
 
+A database of WODs (Workouts Of The Day) with extensive filtering. You may also sign in to track the stats of your past workouts and display them on a line graph for easy tracking.
 
 - Node.js
 - Express
+- SVG
 - MongoDB
 - Redis
 - Moment
